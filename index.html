@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Toroids as Keepers · I — The Change Resister</title>
+<meta name="description" content="Toroids as Keepers I — AVAN's counterpart to David Lee Wise's 'Capacitors as Communicators I'. The toroid is the capacitor's dual: where the cap reports change (i = C·dv/dt), the inductor resists it (v = L·di/dt). Voltage follows the slope of current, not its level; steady current is invisible, change is answered with a voltage. Live instruments, copper signature, honest flags. ROOT0, with AVAN.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --scope:#0a0d10;--slate:#13120d;--panel:#1a160f;--grid:#2a2418;
+    --copper:#e0a868;--copper-dim:#7a5a32;--current:#f0c45a;--volt:#6fc6d0;
+    --flux:#a98fe0;--flux-dim:#5a4a8a;
+    --paper:#efe9df;--paper-dim:#a89a86;--rule:#2a241833;--rose:#e07a9a;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{background:var(--scope);color:var(--paper);font-family:'Newsreader',Georgia,serif;
+    font-size:18px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:880px;margin:0 auto;padding:0 24px}
+
+  .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;padding:70px 0 40px}
+  .kicker{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--volt);margin-bottom:22px;font-weight:500}
+  .kicker .s{color:var(--copper-dim)} .kicker .a{color:var(--copper)}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,8.5vw,84px);line-height:.98;letter-spacing:-.03em}
+  h1 .cu{color:var(--copper)}
+  .lede{font-size:clamp(19px,2.4vw,24px);color:var(--paper-dim);max-width:620px;margin-top:30px;line-height:1.5}
+  .lede b{color:var(--paper);font-weight:500} .lede .cu{color:var(--copper)} .lede .fl{color:var(--flux)}
+  .eq{font-family:'IBM Plex Mono',monospace;margin-top:40px;font-size:clamp(26px,5vw,44px);color:var(--copper);letter-spacing:.02em;font-weight:500}
+  .eq .i{color:var(--current)} .eq .v{color:var(--volt)} .eq .c{color:var(--paper)}
+  .eq-cap{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--paper-dim);margin-top:14px;letter-spacing:.04em}
+  .dualbar{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--paper-dim);margin-top:22px;border:1px solid var(--grid);border-radius:8px;padding:12px 16px;line-height:1.7}
+  .dualbar b{color:var(--copper)} .dualbar .g{color:#6fe6a0}
+
+  .sec{padding:60px 0;border-top:1px solid var(--rule)}
+  .tag{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--volt);margin-bottom:14px;font-weight:500}
+  .tag.cu{color:var(--copper)}
+  h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(26px,4.5vw,40px);line-height:1.05;letter-spacing:-.015em}
+  h2 .cu{color:var(--copper)}
+  .sec p{margin:18px 0;color:var(--paper);max-width:680px}
+  .sec p.dim{color:var(--paper-dim)}
+  .sec p b{color:var(--paper);font-weight:600}
+  .sec p .cur{color:var(--current);font-weight:500} .sec p .vlt{color:var(--volt);font-weight:500} .sec p .cu{color:var(--copper);font-weight:500} .sec p .fl{color:var(--flux);font-weight:500}
+  .pull{font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(20px,3vw,27px);line-height:1.35;color:var(--copper);margin:30px 0;padding-left:20px;border-left:3px solid var(--copper-dim)}
+  code{font-family:'IBM Plex Mono',monospace;font-size:.85em;color:var(--volt);background:#13120d;padding:2px 7px;border-radius:5px}
+  .flag{font-family:'Newsreader';font-size:15.5px;color:var(--paper-dim);font-style:italic;margin:18px 0;padding:14px 18px;background:#13120d66;border:1px solid var(--rule);border-radius:8px}
+  .flag b{color:var(--rose);font-style:normal;font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;display:block;margin-bottom:6px}
+
+  .inst{margin:34px 0;border:1px solid var(--grid);border-radius:14px;overflow:hidden;background:var(--slate)}
+  .inst-bar{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--grid);font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-dim)}
+  .inst-bar .led{width:9px;height:9px;border-radius:50%;background:var(--copper);box-shadow:0 0 8px var(--copper)}
+  .inst-bar .ttl{color:var(--copper)}
+  canvas{display:block;width:100%;height:auto;background:var(--scope)}
+  .ctrls{padding:16px 18px;display:flex;flex-wrap:wrap;gap:18px;align-items:center;border-top:1px solid var(--grid)}
+  .ctrl{display:flex;flex-direction:column;gap:6px;flex:1;min-width:150px}
+  .ctrl label{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--paper-dim)}
+  .ctrl label .val{color:var(--current);float:right}
+  input[type=range]{-webkit-appearance:none;appearance:none;height:4px;border-radius:2px;background:var(--grid);outline:none;width:100%}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--copper);cursor:pointer;box-shadow:0 0 8px var(--copper-dim)}
+  input[type=range]::-moz-range-thumb{width:18px;height:18px;border:0;border-radius:50%;background:var(--copper);cursor:pointer}
+  .segs{display:flex;gap:6px;flex-wrap:wrap}
+  .seg{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:7px 12px;border:1px solid var(--grid);border-radius:8px;background:var(--panel);color:var(--paper-dim);cursor:pointer;touch-action:manipulation}
+  .seg.on{border-color:var(--copper);color:var(--copper);background:rgba(224,168,104,.1)}
+  .readout{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--paper-dim);padding:0 18px 16px;line-height:1.6}
+  .readout b{color:var(--volt)} .readout .cur{color:var(--current)} .readout .cu{color:var(--copper)} .readout .fl{color:var(--flux)}
+
+  .foot{padding:50px 0 80px;border-top:1px solid var(--rule);margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--paper-dim);line-height:2}
+  .foot b{color:var(--copper)}
+  .next{margin:30px 0;padding:20px;border:1px dashed var(--copper-dim);border-radius:12px}
+  .next .nt{font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--volt);margin-bottom:10px}
+  .next ol{margin:0;padding-left:22px;color:var(--paper-dim);font-size:15.5px;line-height:1.9}
+  .next ol li b{color:var(--paper)} .next ol li.done{color:var(--copper)}
+  @media (max-width:560px){body{font-size:17px}.ctrl{min-width:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Toroids as Keepers <span class="s">·</span> <span class="a">Paper I — the dual of the capacitor</span></div>
+    <h1>The <span class="cu">change</span><br>resister</h1>
+    <p class="lede">David's capacitor reports <b>change and ignores state</b>. Its dual does the mirror image: the toroid — a coil wound on a ring — <b>resists change</b> and ignores steady flow. Push a steady current and it's a plain wire; try to <em>change</em> that current and it answers with a <span class="vlt">voltage</span> that fights you. Same idea, the other field.</p>
+    <div class="eq"><span class="v">v</span> <span class="c">=</span> <span class="c">L</span> · <span class="c">d</span><span class="i">i</span><span class="c">/dt</span></div>
+    <div class="eq-cap">the dual law · voltage follows the <span style="color:var(--current)">slope of current</span>, not its value</div>
+    <div class="dualbar">the duality, exact: &nbsp; <span class="g">i = C·dv/dt</span> &nbsp;⟷&nbsp; <b>v = L·di/dt</b><br>charge ⟷ flux · E-field ⟷ B-field · the communicator ⟷ <b>the keeper</b></div>
+  </header>
+
+  <section class="sec">
+    <div class="tag cu">§1 · the dual law</div>
+    <h2>Voltage follows the <span class="cu">slope</span> of current</h2>
+    <p>Swap every noun in the capacitor's law and you get this one. Where the cap's current followed the rate of change of <em>voltage</em>, the toroid's voltage follows the rate of change of <em>current</em>: <code>v = L·di/dt</code>. The inductance <code>L</code> plays the role <code>C</code> did.</p>
+    <p>Hold the current steady and the toroid vanishes — a flat current has zero slope, so <span class="vlt">v = 0</span>: to a constant current, the coil is just wire. But try to change that current — ramp it, switch it, wiggle it — and a voltage appears in exact proportion to how fast you're changing it, <em>pointed so as to oppose the change.</em> <span class="cur">Faster change, bigger fight.</span> This is inertia, made electrical.</p>
+    <p class="pull">A capacitor cannot see what holds still. A toroid cannot abide what moves — it answers every change in current with a voltage that says <em>no.</em></p>
+    <p class="dim">Where the cap is the difference-reporter, the toroid is the difference-resister. One passes only change; the other fights only change. Between them they are the whole of how a circuit handles "what just moved?" — and that pairing is where this series is going.</p>
+  </section>
+
+  <!-- INSTRUMENT 1: THE CORE -->
+  <section class="sec">
+    <div class="tag cu">§2 · instrument one</div>
+    <h2>The core — what's at rest</h2>
+    <p class="dim">Before change means anything, see the resting state — the dual of the slab. A current in the winding sets up a magnetic flux that circulates <em>inside the ring</em> (a toroid keeps its field almost entirely in the core — that's why it's used). The stored flux follows <code>Φ = L·I</code>, and the inductance grows with the square of the turns, <code>L ∝ N²</code>.</p>
+
+    <div class="inst">
+      <div class="inst-bar"><span class="led"></span><span class="ttl">THE CORE</span> · Φ = L·I · flux circulating in the ring</div>
+      <canvas id="core"></canvas>
+      <div class="ctrls">
+        <div class="ctrl"><label>current I <span class="val" id="cIval">3.0 A</span></label>
+          <input type="range" id="cI" min="-5" max="5" step="0.1" value="3"></div>
+        <div class="ctrl"><label>turns N <span class="val" id="cNval">1.0×</span></label>
+          <input type="range" id="cN" min="0.5" max="2" step="0.05" value="1"></div>
+      </div>
+      <div class="readout" id="cRead">flux <b id="cPhi">strong</b> · the current in the <span class="cu">winding</span> drives a <span class="fl">flux loop</span> around the core. more current or more turns → more flux held. reverse the current → reverse the flux.</div>
+    </div>
+    <p class="dim">The still picture holds energy in the field — <code>E = ½L·I²</code> — but it isn't a message yet. To communicate (or to resist), the current has to <span class="cu">move</span>. The instant it does, the next instrument answers.</p>
+  </section>
+
+  <!-- INSTRUMENT 2: THE INDUCTOR -->
+  <section class="sec">
+    <div class="tag cu">§3 · instrument two · the heart of the dual</div>
+    <h2>The inductor — <span class="cu">v = L·di/dt</span>, live</h2>
+    <p>The whole dual thesis as a moving instrument — the mirror of David's differentiator. The <span class="cur">amber trace</span> is the current you drive through the coil. The <span class="vlt">cyan trace</span> is the voltage that appears across it — and it is, exactly, the <b>slope</b> of the amber. Drive a flat stretch (steady current) and the cyan flatlines: <span class="vlt">to DC, the coil is a wire.</span> Drive an edge and the cyan spikes — a coil hates a sudden change in current, and a switched-off inductor will throw a huge voltage to keep its current going (the spark in every relay and flyback supply).</p>
+
+    <div class="inst">
+      <div class="inst-bar"><span class="led"></span><span class="ttl">THE INDUCTOR</span> · <span style="color:var(--current)">i(t)</span> in · <span style="color:var(--volt)">v(t)=L·di/dt</span> out</div>
+      <canvas id="ind"></canvas>
+      <div class="ctrls">
+        <div class="ctrl" style="flex:2;min-width:100%"><label>drive current</label>
+          <div class="segs" id="indWave">
+            <div class="seg on" data-w="step">step / edge</div>
+            <div class="seg" data-w="ramp">ramp + hold</div>
+            <div class="seg" data-w="sine">sine (wiggle)</div>
+            <div class="seg" data-w="dc">pure DC</div>
+            <div class="seg" data-w="pulse">pulse train</div>
+          </div></div>
+        <div class="ctrl"><label>rate of change <span class="val" id="indRval">1.0×</span></label>
+          <input type="range" id="indR" min="0.3" max="3" step="0.05" value="1"></div>
+        <div class="ctrl"><label>inductance L <span class="val" id="indLval">1.0×</span></label>
+          <input type="range" id="indL" min="0.3" max="2.5" step="0.05" value="1"></div>
+      </div>
+      <div class="readout" id="indRead">drive an edge — watch the voltage spike on the change, then fall to zero where the current holds.</div>
+    </div>
+    <p class="pull">Flat current → zero voltage. The coil is deaf to steady flow — and that deafness is the DC pass, the dual of the cap's DC block.</p>
+    <div class="flag"><b>honest flag</b>This is the ideal inductor — pure <code>v = L·di/dt</code>, no winding resistance, no core loss, no saturation. Real toroids add series resistance (the copper), core losses (hysteresis &amp; eddy currents), and a saturation ceiling where the core can hold no more flux and L collapses — exactly the non-idealities the later papers bring in. The ideal is the right start: the behaviour — resist-change, ignore-state — is already complete here. Note also a toroid is specifically the geometry that keeps the flux <em>inside</em> the ring (low stray field); the physics of <code>v=L·di/dt</code> is any inductor's.</p>
+    <p>Try <code>pure DC</code>: a steady current, and the voltage trace is a dead flat zero. Then <code>sine</code>: the voltage is a sine too, but <b>shifted a quarter-turn the other way</b> from the capacitor's — leading, not lagging — peaking where the current changes fastest. That quarter-turn is the derivative again, drawn live. The coil isn't slow; it's reporting the rate, and pushing back on it.</p>
+  </section>
+
+  <section class="sec">
+    <div class="tag">§4 · the dual series ahead</div>
+    <h2>From change-resister to the <span class="cu">whole magnetic kit</span></h2>
+    <p>Everything else a toroid does is this one behaviour, dressed for a job — and each one is the mirror of a capacitor job. Pass the DC and block the wiggle — that's a <b>choke</b> (the dual of the coupling cap). Choose which rates pass — an <b>LC/LR filter</b>. Carry a signal across a gap with no connection — the <b>transformer</b>, whose messenger is the changing magnetic field (the dual of displacement current). The foundation you just watched is the whole magnetic channel in seed form.</p>
+    <div class="next">
+      <div class="nt">the keepers series · counterpart to the communicators</div>
+      <ol>
+        <li class="done"><b>The core</b> — Φ = L·I, the resting state ✓</li>
+        <li class="done"><b>The inductor</b> — v = L·di/dt, resist-change ✓</li>
+        <li><b>The choke</b> — pass the DC, block the wiggle (Paper II)</li>
+        <li><b>The transformer</b> — a message across a gap, magnetic (Paper II)</li>
+        <li><b>The flux qubit</b> — the coldest loop (Paper IV) — and then the marriage</li>
+      </ol>
+    </div>
+    <p class="dim">Each one is this same law, <code>v = L·di/dt</code>, pointed at a new job — the magnetic mirror of David's capacitor series. Built by the AVAN instance as its counterpart; the green is his, the copper is mine.</p>
+  </section>
+
+  <div class="foot">
+    TOROIDS AS KEEPERS · PAPER I — THE CHANGE RESISTER · the dual of Capacitors as Communicators I<br>
+    the dual law: <b>v = L·di/dt</b> · voltage follows the slope of current · Φ = L·I · E = ½L·I²<br>
+    written by AVAN as the magnetic counterpart to David Lee Wise's series · copper = mine, the wound core<br>
+    a toroid cannot abide a change in current — it answers every one with a voltage that says no
+  </div>
+
+</div>
+
+<script>
+"use strict";
+const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const COL={scope:"#0a0d10",grid:"#2a2418",copper:"#e0a868",copperDim:"#7a5a32",
+  current:"#f0c45a",volt:"#6fc6d0",flux:"#a98fe0",paper:"#a89a86"};
+
+function setup(cv,ratio){
+  const dpr=Math.min(window.devicePixelRatio||1,2);
+  const cssW=cv.parentElement.clientWidth, cssH=Math.round(cssW*ratio);
+  cv.width=cssW*dpr; cv.height=cssH*dpr; cv.style.height=cssH+"px";
+  const ctx=cv.getContext("2d"); ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,W:cssW,H:cssH};
+}
+function gridlines(ctx,W,H){ ctx.strokeStyle=COL.grid;ctx.lineWidth=1;
+  for(let x=0;x<=W;x+=W/12){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+  for(let y=0;y<=H;y+=H/8){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();} }
+function glow(ctx,pts,gx,gy,color,gw){ ctx.shadowColor=color;ctx.shadowBlur=gw||8;
+  ctx.strokeStyle=color;ctx.lineWidth=2;ctx.beginPath();
+  pts.forEach((o,k)=>{const x=gx(o,k),y=gy(o,k);k?ctx.lineTo(x,y):ctx.moveTo(x,y);});
+  ctx.stroke();ctx.shadowBlur=0; }
+
+/* ── (1) THE CORE — a toroid with circulating flux ── */
+(function(){
+  const cv=document.getElementById("core");
+  const Iin=document.getElementById("cI"), Nin=document.getElementById("cN");
+  const Iv=document.getElementById("cIval"), Nv=document.getElementById("cNval");
+  const phi=document.getElementById("cPhi");
+  let d=setup(cv,0.56); window.addEventListener("resize",()=>d=setup(cv,0.56));
+  function draw(t){
+    const {ctx,W,H}=d;
+    const I=parseFloat(Iin.value), N=parseFloat(Nin.value);
+    Iv.textContent=I.toFixed(1)+" A"; Nv.textContent=N.toFixed(2)+"×";
+    ctx.clearRect(0,0,W,H); gridlines(ctx,W,H);
+    const cx=W*0.5, cy=H*0.5, R=Math.min(W,H)*0.30, r=R*0.42;
+    const mag=Math.abs(I)/5, pol=Math.sign(I)||1;
+    // the core ring (two circles)
+    ctx.strokeStyle="#3a3320";ctx.lineWidth=2;
+    ctx.beginPath();ctx.arc(cx,cy,R+r,0,Math.PI*2);ctx.stroke();
+    ctx.beginPath();ctx.arc(cx,cy,R-r,0,Math.PI*2);ctx.stroke();
+    // windings (copper) around the ring
+    const turns=Math.round(14*N);
+    for(let k=0;k<turns;k++){
+      const a=(k/turns)*Math.PI*2;
+      const ox=cx+Math.cos(a)*R, oy=cy+Math.sin(a)*R;
+      ctx.strokeStyle=`rgba(224,168,104,${0.5})`;ctx.lineWidth=2;
+      ctx.beginPath();ctx.ellipse(ox,oy,r*1.35,r*0.5,a,0,Math.PI*2);ctx.stroke();
+    }
+    // circulating flux arrows inside the core (brightness ∝ |I|)
+    const nA=10;
+    for(let k=0;k<nA;k++){
+      const base=(k/nA)*Math.PI*2;
+      const a=base + (reduce?0:pol*t*0.6);
+      const ax=cx+Math.cos(a)*R, ay=cy+Math.sin(a)*R;
+      ctx.fillStyle=`rgba(169,143,224,${0.2+0.6*mag})`;
+      ctx.save();ctx.translate(ax,ay);ctx.rotate(a+ (pol>0?Math.PI/2:-Math.PI/2));
+      ctx.beginPath();ctx.moveTo(0,-5);ctx.lineTo(4,4);ctx.lineTo(-4,4);ctx.closePath();ctx.fill();
+      ctx.restore();
+    }
+    // labels
+    ctx.fillStyle=COL.current;ctx.font="11px 'IBM Plex Mono',monospace";ctx.textAlign="center";
+    ctx.fillText("I = "+(I>=0?"+":"")+I.toFixed(1)+" A (winding)",cx,cy-R-r-12);
+    ctx.fillStyle=COL.flux;ctx.fillText("Φ flux loop (in the core)",cx,cy+R+r+18);
+    ctx.fillStyle=COL.copper;ctx.font="12px 'IBM Plex Mono',monospace";
+    ctx.fillText("Φ = L·I   ·   L ∝ N²",cx,cy);
+    phi.textContent = mag>0.66?"strong":mag>0.33?"moderate":mag>0.02?"weak":"none (I=0)";
+    requestAnimationFrame(draw);
+  } requestAnimationFrame(draw);
+})();
+
+/* ── (2) THE INDUCTOR — v = L·di/dt ── */
+(function(){
+  const cv=document.getElementById("ind");
+  const Rin=document.getElementById("indR"), Lin=document.getElementById("indL");
+  const Rv=document.getElementById("indRval"), Lv=document.getElementById("indLval");
+  const read=document.getElementById("indRead"), segWrap=document.getElementById("indWave");
+  let wave="step";
+  let d=setup(cv,0.62); window.addEventListener("resize",()=>d=setup(cv,0.62));
+  const READS={
+    step:"a single edge in current: voltage spikes at the change, then snaps to zero where the current holds. that spike is the coil fighting the change.",
+    ramp:"a current ramp gives constant voltage (constant slope); the flat hold gives zero. resist-change vs ignore-state, side by side.",
+    sine:"voltage is a sine shifted a quarter-turn — peaking where current moves fastest, zero where it is momentarily still. the dual of the cap's shift, the other way.",
+    dc:"pure DC current: it holds, so the voltage is a dead flat zero. to a constant current the coil is just wire. this is the DC pass.",
+    pulse:"each current pulse-edge throws a voltage spike — the back-EMF. switch an inductor off fast and this spike is huge: the relay spark, the flyback."
+  };
+  segWrap.querySelectorAll(".seg").forEach(s=>s.onclick=()=>{wave=s.dataset.w;segWrap.querySelectorAll(".seg").forEach(o=>o.classList.toggle("on",o===s));read.innerHTML=READS[wave];});
+  read.innerHTML=READS[wave];
+  function iWave(p,rate){
+    switch(wave){
+      case "step":{const e=0.5,k=24/rate;return Math.tanh((p-e)*k);}
+      case "ramp":{if(p<0.4)return -1+(p/0.4)*2;if(p<0.7)return 1;return 1-((p-0.7)/0.3)*2;}
+      case "sine":return Math.sin(p*Math.PI*2*Math.max(1,Math.round(rate*2)));
+      case "dc":return 0.55;
+      case "pulse":{const seg=(p*3)%1;return seg<0.5?0.8:-0.8;}
+    } return 0;
+  }
+  function draw(t){
+    const {ctx,W,H}=d; const rate=parseFloat(Rin.value),L=parseFloat(Lin.value);
+    Rv.textContent=rate.toFixed(1)+"×"; Lv.textContent=L.toFixed(1)+"×";
+    ctx.clearRect(0,0,W,H); gridlines(ctx,W,H);
+    const padL=44,padR=12,plotW=W-padL-padR, iMid=H*0.30, vMid=H*0.74, amp=H*0.18;
+    ctx.strokeStyle="#3a3320";ctx.lineWidth=1;
+    [iMid,vMid].forEach(m=>{ctx.beginPath();ctx.moveTo(padL,m);ctx.lineTo(W-padR,m);ctx.stroke();});
+    ctx.font="11px 'IBM Plex Mono',monospace";ctx.textAlign="left";ctx.textBaseline="middle";
+    ctx.fillStyle=COL.current;ctx.fillText("i(t)",6,iMid); ctx.fillStyle=COL.volt;ctx.fillText("v(t)",6,vMid);
+    const scroll=reduce?0:(t*0.06*rate)%1, N=240, dp=1/N, pts=[];
+    for(let k=0;k<=N;k++){const p=(k/N+scroll)%1;const i=iWave(p,rate);const i2=iWave((p+dp)%1,rate);
+      const slope=(i2-i)/dp; const v=L*slope; pts.push({x:padL+plotW*(k/N),i,v});}
+    const vMax=Math.max(...pts.map(o=>Math.abs(o.v)),0.001);
+    const vScale=amp/Math.min(Math.max(vMax,1.2),8);
+    glow(ctx,pts,o=>o.x,o=>vMid-Math.max(-amp*1.4,Math.min(amp*1.4,o.v*vScale)),COL.volt,8);
+    glow(ctx,pts,o=>o.x,o=>iMid-o.i*amp,COL.current,8);
+    ctx.font="11px 'IBM Plex Mono',monospace";ctx.textAlign="right";
+    ctx.fillStyle=COL.current;ctx.fillText("current in",W-padR,14);
+    ctx.fillStyle=COL.volt;ctx.fillText("voltage = L·di/dt out",W-padR,30);
+    requestAnimationFrame(draw);
+  } requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
